@@ -18,12 +18,12 @@ function nav(current){
   document.getElementById('nav').innerHTML=html||'<p class="muted" style="font-size:14px">見つかりませんでした</p>';
   const n=Object.values(state.done).filter(Boolean).length;
   document.getElementById('count').textContent=`${n} / ${LESSONS.length}`;
-  document.getElementById('progress').value=n;
+  document.getElementById('progress').max=LESSONS.length;document.getElementById('progress').value=n;
 }
 
 function home(){
   const next=LESSONS.find(l=>!state.done[l.id])||LESSONS[0];
-  return `<section class="panel"><p class="eyebrow">CONSULTING SKILLS LAB</p><h1>コンサルティングの基本スキルを、<br>型から身につける</h1><p class="lead">考え方の型・資料の作り方・進め方の3分野を、全12レッスンで学びます。各レッスンは、講義・良い例と悪い例・演習・確認クイズで構成されています。</p><div class="steps"><div><b>1. 読む</b>講義と例で型を理解する（1レッスン30分前後）</div><div><b>2. 手を動かす</b>演習を自分で書き、模範解答と比べる</div><div><b>3. 使う</b>まとめの3行を、翌日の仕事で1つ試す</div></div><p style="margin-top:18px"><a class="btn primary" href="#l${next.id}">${state.done[next.id]?'最初から':'続きから'}：${String(next.id).padStart(2,'0')} ${next.title} →</a></p></section>
+  return `<section class="panel"><p class="eyebrow">CONSULTING SKILLS LAB</p><h1>コンサルティングの基本スキルを、<br>型から身につける</h1><p class="lead">考え方の型・資料の作り方・進め方の3分野を、全13レッスンで学びます。各レッスンは、講義・良い例と悪い例・演習・確認クイズで構成されています。</p><div class="steps"><div><b>1. 読む</b>講義と例で型を理解する（1レッスン30分前後）</div><div><b>2. 手を動かす</b>演習を自分で書き、模範解答と比べる</div><div><b>3. 使う</b>まとめの3行を、翌日の仕事で1つ試す</div></div><p style="margin-top:18px"><a class="btn primary" href="#l${next.id}">${state.done[next.id]?'最初から':'続きから'}：${String(next.id).padStart(2,'0')} ${next.title} →</a></p></section>
 <section class="panel"><h2>3つの分野</h2><div class="areas">${AREAS.map(a=>`<div class="area" style="--c:${a.color}"><h3>${a.name}</h3><p>${a.lead}</p><ol start="${LESSONS.find(l=>l.area===a.id).id}">${LESSONS.filter(l=>l.area===a.id).map(l=>`<li><a href="#l${l.id}">${l.title}</a></li>`).join('')}</ol></div>`).join('')}</div></section>
 <section class="panel"><h2>この教材について</h2><p>コンサルティング会社の研修や定番の書籍で扱われる基本的な考え方を、個人の学習用にまとめたものです。特定の会社の公式な教材ではありません。例はすべて架空です。</p><p class="sources">参考にした主な書籍：${Object.values(SOURCES).join('／')}</p></section>`;
 }
