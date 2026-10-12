@@ -281,6 +281,18 @@ footer{border-top:1px solid var(--line);padding:24px 38px;display:flex;justify-c
   body.print-all>header,body.print-all>.layout,body.print-all>footer{display:none!important}
   body.print-all>#print-document{display:block}
 }
+
+/* Keep the site controls visible while reading. */
+@media screen {
+  :root{--header-height:83px}
+  html{scroll-padding-top:calc(var(--header-height) + 16px)}
+  body>header{position:sticky;top:0;z-index:50}
+  aside{top:var(--header-height);max-height:calc(100vh - var(--header-height))}
+  @media(max-width:720px){
+    :root{--header-height:70px}
+    aside{top:auto;max-height:none}
+  }
+}
 </style><style>:root{--accent:#1f4e8c;--accent-deep:#163a6a;--tint:#e5ecf6;--tint-2:#c6d4e8;--tint-3:#f1f5fa;--hi:#cfe0ff;--paper:#f6f8fb;--line:#dbe2ec;--ink:#14213a;--muted:#5c6a80;--dk-accent:#8fb3e8;--dk-tint:#1b2638;--dk-tint-2:#2b3a52;--dk-tint-3:#172030}</style></head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
